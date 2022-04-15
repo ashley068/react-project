@@ -6,13 +6,15 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      // updateTime: "",
       res: new Map(),
     };
+    // this.time = new Date();
   }
   stock = ["TSLA", "AAPL", "AMZN", "FB"];
 
   updateNow() {
-    console.log("update");
+    // console.log("update");
     // debugger;
     this.stock.forEach(async (symbol) => {
       // console.log(symbol);
@@ -27,9 +29,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // console.log(this);
     this.updateNow();
-    this.updateInterval = setInterval(() => this.updateNow(), 5000);
-    // this.updateInterval = setInterval(this.updateNow(), 5000);
+    this.updateInterval = setInterval(() => {
+      this.updateNow();
+    }, 5000);
+    // this.updateInterval = setInterval(this.updateNow, 5000);
   }
 
   componentWillUnmount() {
@@ -39,9 +44,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="main">
-        <div>
-          <h1>My Stock Watchlist</h1>
-          <span>Updated at</span>
+        <div className="header">
+          <h2>My Stock Watchlist</h2>
+          <p>Updated at {this.state.updateTime}</p>
         </div>
         <div>
           <StockList stocklist={this.state.res} />

@@ -11,10 +11,12 @@ class StockItem extends React.Component {
         <div className="data">
           {this.props.data.c}
           <br />
-          {Number(this.props.data.d).toFixed(2)}
-          <span className="dp">
-            ({Number(this.props.data.dp).toFixed(2) + "%"})
-          </span>
+          <div className={this.props.data.d > 0 ? "green-text" : "red-text"}>
+            {Number(this.props.data.d).toFixed(2)}
+            <span className="dp">
+              ({Number(this.props.data.dp).toFixed(2) + "%"})
+            </span>
+          </div>
         </div>
       </div>
     );
