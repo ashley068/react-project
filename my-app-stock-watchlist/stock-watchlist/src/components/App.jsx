@@ -5,11 +5,11 @@ import StockList from "./StockList";
 class App extends React.Component {
   constructor() {
     super();
+    // this.time = new Date();
     this.state = {
-      // updateTime: "",
+      updateTime: new Date().toLocaleTimeString("en-US"),
       res: new Map(),
     };
-    // this.time = new Date();
   }
   stock = ["TSLA", "AAPL", "AMZN", "FB"];
 
@@ -33,7 +33,8 @@ class App extends React.Component {
     this.updateNow();
     this.updateInterval = setInterval(() => {
       this.updateNow();
-    }, 5000);
+      this.setState({ updateTime: new Date().toLocaleTimeString("en-US") });
+    }, 60 * 1000);
     // this.updateInterval = setInterval(this.updateNow, 5000);
   }
 

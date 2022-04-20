@@ -8,6 +8,7 @@ class StockList extends React.Component {
     stockMap.forEach((value, key) => {
       stockKeys.push(key);
     });
+    stockKeys.sort();
     return stockKeys.map((item, index) => (
       <StockItem key={index} symbol={item} data={stockMap.get(item)} />
     ));
