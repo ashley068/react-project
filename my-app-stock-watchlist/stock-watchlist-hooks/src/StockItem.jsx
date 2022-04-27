@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
+//npm classNames
+// https://www.npmjs.com/package/classnames
 
-const StockItem = (props) => {
-  console.log(props);
+const StockItem = ({ symbol, data }) => {
   return (
     <div className="container">
       <div className="symbol">
-        <h4>{props.symbol}</h4>
+        <h4>{symbol}</h4>
       </div>
       <div className="data">
-        {props.data.c}
+        {data.c}
         <br />
-        <div className={props.data.d > 0 ? "green-text" : "red-text"}>
-          {Number(props.data.d).toFixed(2)}
-          <span className="dp">({Number(props.data.dp).toFixed(2) + "%"})</span>
+        <div className={data.d > 0 ? "green-text" : "red-text"}>
+          {Number(data.d).toFixed(2)}
+          <span className="dp">({Number(data.dp).toFixed(2) + "%"})</span>
         </div>
       </div>
     </div>

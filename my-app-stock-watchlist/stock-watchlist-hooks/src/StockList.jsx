@@ -1,18 +1,28 @@
 import React from "react";
 import StockItem from "./StockItem";
+import "./style.css";
 
-const StockList = (props) => {
-  console.log(props);
-  let stockKeys = [];
-  props.stocklist.forEach((value, key) => {
-    stockKeys.push(key);
-  });
-  stockKeys.sort();
-  return stockKeys.map((item, index) => {
+const StockList = ({ stockList, removeStock }) => {
+  // const { stockList } = props;
+  const renderedLists = stockList.map(({ config, data }) => {
     return (
-      <StockItem key={index} symbol={item} data={props.stocklist.get(item)} />
+      <div>
+        <button
+          className="btn-delete"
+          onClick={() => removeStock(config.params.symbol)}
+        >
+          -
+        </button>
+        <StockItem
+          key={config.params.symbol}
+          symbol={config.params.symbol}
+          data={data}
+        />
+      </div>
     );
   });
+  return <div>{renderedLists}</div>;
+  // console.log("STOCKLIST", props);
 };
 
 export default StockList;
