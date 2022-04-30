@@ -16,9 +16,27 @@ const App = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setUpdatedTime(new Date().toLocaleTimeString("en-US"));
+      // updateStockList();
     }, 60 * 1000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const updateStockList = async () => {
+      const unresolvedList = stockList.map((item) =>
+        finnhub.get("/quote", {
+          params: {
+            symbol: item.config.params.symbol,
+          },
+        })
+      );
+      const newStockList = await Promise.all(unresolvedList);
+      setStockList(newStockList);
+    };
+    updateStockList();
+  }, [updatedTime]);
+
+  // setStockList(updateStockList);
 
   //api request
   useEffect(() => {
@@ -30,6 +48,7 @@ const App = () => {
       });
       stockList.push(response);
       setStockList([...stockList]);
+      // console.log(stockList);
     };
 
     if (term && !symbolList.includes(term)) {
@@ -49,8 +68,7 @@ const App = () => {
     );
     setStockList(newStockList);
   };
-  // console.log(symbolList);
-  // console.log(stockList);
+
   return (
     <div className="main">
       <div className="header">
