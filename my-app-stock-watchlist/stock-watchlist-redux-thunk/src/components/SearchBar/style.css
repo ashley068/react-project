@@ -1,0 +1,21 @@
+.search-bar {
+  width: 450px;
+  padding: 5px 8px;
+  margin-right: 30px;
+
+  border-radius: 4px;
+  border: none;
+  box-shadow: 2px 2px 2px 2px rgb(201, 201, 201);
+}
+input:focus {
+  outline: none;
+}
+.btn-add {
+  width: 70px;
+  height: 28px;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  background-color: rgb(90, 97, 165);
+  cursor: pointer;
+}
